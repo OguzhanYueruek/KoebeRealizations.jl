@@ -1,0 +1,156 @@
+
+#       'square_pyramid' : Square pyramid with regular facets. Johnson solid J1.
+#       'pentagonal_pyramid' : Pentagonal pyramid with regular facets. Johnson solid J2.
+#       'triangular_cupola' : Triangular cupola with regular facets. Johnson solid J3.
+#       'square_cupola' : Square cupola with regular facets. Johnson solid J4.
+#       'pentagonal_cupola' : Pentagonal cupola with regular facets. Johnson solid J5.
+#       'pentagonal_rotunda' : Pentagonal rotunda with regular facets. Johnson solid J6.
+#       'elongated_triangular_pyramid' : Elongated triangular pyramid with regular facets. Johnson solid J7.
+#       'elongated_square_pyramid' : Elongated square pyramid with regular facets. Johnson solid J8.
+#       'elongated_pentagonal_pyramid' : Elongated pentagonal pyramid with regular facets. Johnson solid J9.
+#           The vertices are realized as floating point numbers.
+#       'gyroelongated_square_pyramid' : Gyroelongated square pyramid with regular facets. Johnson solid J10.
+#           The vertices are realized as floating point numbers.
+#       'gyroelongated_pentagonal_pyramid' : Gyroelongated pentagonal pyramid with regular facets. Johnson solid J11.
+#       'triangular_bipyramid' : Triangular bipyramid with regular facets. Johnson solid J12.
+#       'pentagonal_bipyramid' : Pentagonal bipyramid with regular facets. Johnson solid J13.
+#           The vertices are realized as floating point numbers.
+#       'elongated_triangular_bipyramid' : Elongated triangular bipyramid with regular facets. Johnson solid J14.
+#       'elongated_square_bipyramid' : Elongated square bipyramid with regular facets. Johnson solid J15.
+#       'elongated_pentagonal_bipyramid' : Elongated pentagonal bipyramid with regular facets. Johnson solid J16.
+#           The vertices are realized as floating point numbers.
+#       'gyroelongated_square_bipyramid' : Gyroelongted square bipyramid with regular facets. Johnson solid J17.
+#           The vertices are realized as floating point numbers.
+#       'elongated_triangular_cupola' : Elongted triangular cupola with regular facets. Johnson solid J18.
+#           The vertices are realized as floating point numbers.
+#       'elongated_square_cupola' : Elongted square cupola with regular facets. Johnson solid J19.
+#       'elongated_pentagonal_cupola' : Elongted pentagonal cupola with regular facets. Johnson solid J20
+#           The vertices are realized as floating point numbers.
+#       'elongated_pentagonal_rotunda' : Elongated pentagonal rotunda with regular facets. Johnson solid J21.
+#           The vertices are realized as floating point numbers.
+#       'gyroelongated_triangular_cupola' : Gyroelongted triangular cupola with regular facets. Johnson solid J22.
+#           The vertices are realized as floating point numbers.
+#       'gyroelongated_square_cupola' : Gyroelongted square cupola with regular facets. Johnson solid J23.
+#           The vertices are realized as floating point numbers.
+#       'gyroelongated_pentagonal_cupola' : Gyroelongted pentagonal cupola with regular facets. Johnson solid J24.
+#           The vertices are realized as floating point numbers.
+#       'gyroelongated_pentagonal_rotunda' : Gyroelongted pentagonal rotunda with regular facets. Johnson solid J25.
+#           The vertices are realized as floating point numbers.
+#       'gyrobifastigium' : Gyrobifastigium with regular facets. Johnson solid J26.
+#       'triangular_orthobicupola' : Triangular orthobicupola with regular facets. Johnson solid J27.
+#       'square_orthobicupola' : Square orthobicupola with regular facets. Johnson solid J28.
+#       'square_gyrobicupola' : Square gyrobicupola with regular facets. Johnson solid J29.
+#       'pentagonal_orthobicupola' : Pentagonal orthobicupola with regular facets. Johnson solid J30.
+#           The vertices are realized as floating point numbers.
+#       'pentagonal_gyrobicupola' : Pentagonal gyrobicupola with regular facets. Johnson solid J31.
+#           The vertices are realized as floating point numbers.
+#       'pentagonal_orthocupolarotunda' : Pentagonal orthocupolarotunda with regular facets. Johnson solid J32.
+#           The vertices are realized as floating point numbers.
+#       'pentagonal_gyrocupolarotunda' : Pentagonal gyrocupolarotunda with regular facets. Johnson solid J33.
+#           The vertices are realized as floating point numbers.
+#       'pentagonal_orthobirotunda' : Pentagonal orthobirotunda with regular facets. Johnson solid J32.
+#           The vertices are realized as floating point numbers.
+#       'elongated_triangular_orthbicupola' : Elongated triangular orthobicupola with regular facets. Johnson solid J35.
+#           The vertices are realized as floating point numbers.
+#       'elongated_triangular_gyrobicupola' : Elongated triangular gyrobicupola with regular facets. Johnson solid J36.
+#           The vertices are realized as floating point numbers.
+#       'elongated_square_gyrobicupola' : Elongated square gyrobicupola with regular facets. Johnson solid J37.
+#       'elongated_pentagonal_orthobicupola' : Elongated pentagonal orthobicupola with regular facets. Johnson solid J38.
+#           The vertices are realized as floating point numbers.
+#       'elongated_pentagonal_gyrobicupola' : Elongated pentagonal gyrobicupola with regular facets. Johnson solid J39.
+#           The vertices are realized as floating point numbers.
+#       'elongated_pentagonal_orthocupolarotunda' : Elongated pentagonal orthocupolarotunda with regular facets. Johnson solid J40.
+#           The vertices are realized as floating point numbers.
+#       'elongated_pentagonal_gyrocupolarotunda' : Elongated pentagonal gyrocupolarotunda with regular facets. Johnson solid J41.
+#           The vertices are realized as floating point numbers.
+#       'elongated_pentagonal_orthobirotunda' : Elongated pentagonal orthobirotunda with regular facets. Johnson solid J42.
+#           The vertices are realized as floating point numbers.
+#       'elongated_pentagonal_gyrobirotunda' : Elongated pentagonal gyrobirotunda with regular facets. Johnson solid J43.
+#           The vertices are realized as floating point numbers.
+#       'gyroelongated_triangular_bicupola' : Gyroelongated triangular bicupola with regular facets. Johnson solid J44.
+#           The vertices are realized as floating point numbers.
+#       'elongated_square_bicupola' : Elongated square bicupola with regular facets. Johnson solid J45.
+#           The vertices are realized as floating point numbers.
+#       'gyroelongated_pentagonal_bicupola' : Gyroelongated pentagonal bicupola with regular facets. Johnson solid J46.
+#           The vertices are realized as floating point numbers.
+#       'gyroelongated_pentagonal_cupolarotunda' : Gyroelongated pentagonal cupolarotunda with regular facets. Johnson solid J47.
+#           The vertices are realized as floating point numbers.
+#       'gyroelongated_pentagonal_birotunda' : Gyroelongated pentagonal birotunda with regular facets. Johnson solid J48.
+#           The vertices are realized as floating point numbers.
+#       'augmented_triangular_prism' : Augmented triangular prism with regular facets. Johnson solid J49.
+#           The vertices are realized as floating point numbers.
+#       'biaugmented_triangular_prism' : Biaugmented triangular prism with regular facets. Johnson solid J50.
+#           The vertices are realized as floating point numbers.
+#       'triaugmented_triangular_prism' : Triaugmented triangular prism with regular facets. Johnson solid J51.
+#           The vertices are realized as floating point numbers.
+#       'augmented_pentagonal_prism' : Augmented prantagonal prism  with regular facets. Johnson solid J52.
+#           The vertices are realized as floating point numbers.
+#       'biaugmented_pentagonal_prism' : Augmented pentagonal prism with regular facets. Johnson solid J53.
+#           The vertices are realized as floating point numbers.
+#       'augmented_hexagonal_prism' : Augmented hexagonal prism with regular facets. Johnson solid J54.
+#           The vertices are realized as floating point numbers.
+#       'parabiaugmented_hexagonal_prism' : Parabiaugmented hexagonal prism with regular facets. Johnson solid J55.
+#           The vertices are realized as floating point numbers.
+#       'metabiaugmented_hexagonal_prism' : Metabiaugmented hexagonal prism with regular facets. Johnson solid J56.
+#           The vertices are realized as floating point numbers.
+#       'triaugmented_hexagonal_prism' : triaugmented hexagonal prism with regular facets. Johnson solid J57.
+#           The vertices are realized as floating point numbers.
+#       'augmented_dodecahedron' : Augmented dodecahedron with regular facets. Johnson solid J58.
+#           The vertices are realized as floating point numbers.
+#       'parabiaugmented_dodecahedron' : Parabiaugmented dodecahedron with regular facets. Johnson solid J59.
+#           The vertices are realized as floating point numbers.
+#       'metabiaugmented_dodecahedron' : Metabiaugmented dodecahedron with regular facets. Johnson solid J60.
+#           The vertices are realized as floating point numbers.
+#       'triaugmented_dodecahedron' : Triaugmented dodecahedron with regular facets. Johnson solid J61.
+#           The vertices are realized as floating point numbers.
+#       'metabidiminished_icosahedron' : Metabidiminished icosahedron with regular facets. Johnson solid J62.
+#       'tridiminished_icosahedron' : Tridiminished icosahedron with regular facets. Johnson solid J63.
+#       'augmented_tridiminished_icosahedron' : Augmented tridiminished icosahedron with regular facets. Johnson solid J64.
+#           The vertices are realized as floating point numbers.
+#       'augmented_truncated_tetrahedron' : Augmented truncated tetrahedron with regular facets. Johnson solid J65.
+#       'augmented_truncated_cube' : Augmented truncated cube with regular facets. Johnson solid J66.
+#       'biaugmented_truncated_cube' : Biaugmented truncated cube with regular facets. Johnson solid J67.
+#       'augmented_truncated_dodecahedron' : Augmented truncated dodecahedron with regular facets. Johnson solid J68.
+#           The vertices are realized as floating point numbers.
+#       'parabiaugmented_truncated_dodecahedron' : Parabiaugmented truncated dodecahedron with regular facets. Johnson solid J69.
+#           The vertices are realized as floating point numbers.
+#       'metabiaugmented_truncated_dodecahedron' : Metabiaugmented truncated dodecahedron with regular facets. Johnson solid J70.
+#           The vertices are realized as floating point numbers.
+#       'triaugmented_truncated_dodecahedron' : Triaugmented truncated dodecahedron with regular facets. Johnson solid J71.
+#           The vertices are realized as floating point numbers.
+#       'gyrate_rhombicosidodecahedron' : Gyrate rhombicosidodecahedron with regular facets. Johnson solid J72.
+#           The vertices are realized as floating point numbers.
+#       'parabigyrate_rhombicosidodecahedron' : Parabigyrate rhombicosidodecahedron with regular facets. Johnson solid J73.
+#           The vertices are realized as floating point numbers.
+#       'metabigyrate_rhombicosidodecahedron' : Metabigyrate rhombicosidodecahedron with regular facets. Johnson solid J74.
+#           The vertices are realized as floating point numbers.
+#       'trigyrate_rhombicosidodecahedron' : Trigyrate rhombicosidodecahedron with regular facets. Johnson solid J75.
+#           The vertices are realized as floating point numbers.
+#       'diminished_rhombicosidodecahedron' : Diminished rhombicosidodecahedron with regular facets. Johnson solid J76.
+#       'paragyrate_diminished_rhombicosidodecahedron' : Paragyrate diminished rhombicosidodecahedron with regular facets. Johnson solid J77.
+#           The vertices are realized as floating point numbers.
+#       'metagyrate_diminished_rhombicosidodecahedron' : Metagyrate diminished rhombicosidodecahedron with regular facets. Johnson solid J78.
+#           The vertices are realized as floating point numbers.
+#       'bigyrate_diminished_rhombicosidodecahedron' : Bigyrate diminished rhombicosidodecahedron with regular facets. Johnson solid J79.
+#           The vertices are realized as floating point numbers.
+#       'parabidiminished_rhombicosidodecahedron' : Parabidiminished rhombicosidodecahedron with regular facets. Johnson solid J80.
+#       'metabidiminished_rhombicosidodecahedron' : Metabidiminished rhombicosidodecahedron with regular facets. Johnson solid J81.
+#       'gyrate_bidiminished_rhombicosidodecahedron' : Gyrate bidiminished rhombicosidodecahedron with regular facets. Johnson solid J82.
+#           The vertices are realized as floating point numbers.
+#       'tridiminished_rhombicosidodecahedron' : Tridiminished rhombicosidodecahedron with regular facets. Johnson solid J83.
+#       'snub_disphenoid' : Snub disphenoid with regular facets. Johnson solid J84.
+#           The vertices are realized as floating point numbers.
+#       'snub_square_antisprim' : Snub square antiprism with regular facets. Johnson solid J85.
+#           The vertices are realized as floating point numbers.
+#       'sphenocorona' : Sphenocorona with regular facets. Johnson solid J86.
+#           The vertices are realized as floating point numbers.
+#       'augmented_sphenocorona' : Augmented sphenocorona with regular facets. Johnson solid J87.
+#           The vertices are realized as floating point numbers.
+#       'sphenomegacorona' : Sphenomegacorona with regular facets. Johnson solid J88.
+#           The vertices are realized as floating point numbers.
+#       'hebesphenomegacorona' : Hebesphenomegacorona with regular facets. Johnson solid J89.
+#           The vertices are realized as floating point numbers.
+#       'disphenocingulum' : Disphenocingulum with regular facets. Johnson solid J90.
+#           The vertices are realized as floating point numbers.
+#       'bilunabirotunda' : Bilunabirotunda with regular facets. Johnson solid J91.
+#       'triangular_hebesphenorotunda' : Triangular hebesphenorotunda with regular facets. Johnson solid J92.
