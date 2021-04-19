@@ -334,6 +334,35 @@ function layout(G::EuclideanMedialGraph)
         end
     # Start recursion
     iterative_layout(1, 0)
+    
+    #We need to verify that we have no-nothing entries
+    
+    limit_count=1
+    limit=length(face_coords)^3
+    while !isempty(findall(x->typeof(x)==Nothing, face_coords)) && limit_count<limit
+        starting_face=0
+        id_face_miss=1
+        
+        while starting_face==0
+            
+            face_miss=findall(x->typeof(x)==Nothing, face_coords)[id_face_miss]
+
+            #we need to find a computed adjacent face w.r.t the i-th one
+
+            for (i, j) in face_cycles[face_miss]
+                haskey(G.oriented_edges, (j, i)) || continue
+                adjacent_face=G.oriented_edges[(j, i)]
+                face_coords[adjacent_face]!=nothing || continue
+                starting_face=adjacent_face
+            end
+            
+            id_face_miss=id_face_miss+1
+        end
+        
+        iterative_layout(starting_face, 0)
+        
+        limit_count+=1
+    end
 
 
     return (
