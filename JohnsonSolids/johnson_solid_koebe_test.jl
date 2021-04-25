@@ -46,13 +46,13 @@ then the set of different vertices is also printed.
 """
 function test_johnson_toText(dir,n_trials=3,up_to=92)
     #Warmup
-    koebe_realization(johnson_incidence(1))
+    koebe_realization(polytope.johnson_solid(1).VERTICES_IN_FACETS)
     file_path = dir * "/RationalJohnsonSolids.txt"
     io = open(file_path, "w")
     close(io)
 
     for i in 1:up_to
-        incidence_matrix = johnson_incidence(i)
+        incidence_matrix = polytope.johnson_solid(i).VERTICES_IN_FACETS
         results = []
         for trial in 1:n_trials
             error_flag = false
@@ -102,10 +102,10 @@ then the set of different vertices is also printed.
 """
 function test_johnson_toConsole(n_trials=3,up_to=3)
     #Warmup
-    koebe_realization(johnson_incidence(1))
+    koebe_realization(polytope.johnson_solid(1).VERTICES_IN_FACETS)
 
     for i in 1:up_to
-        incidence_matrix = johnson_incidence(i)
+        incidence_matrix = polytope.johnson_solid(i).VERTICES_IN_FACETS
         results = []
         for trial in 1:n_trials
             error_flag = false
