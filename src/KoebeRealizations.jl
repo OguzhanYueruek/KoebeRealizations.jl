@@ -1,6 +1,6 @@
 module KoebeRealizations
 
-export EuclideanMedialGraph, layout, plot_circle_packing, koebe_realization
+export EuclideanMedialGraph, AmboGraph, layout, plot_circle_packing, koebe_realization
 
 using LinearAlgebra
 using ModelingToolkit: @variables, ~, NonlinearSystem, NonlinearProblem
@@ -47,6 +47,125 @@ end
 
 "[(6, 1), (1,3), (3,6)] -> [(6,3), (3, 1), (1, 6)]"
 rev(cycle) = map(reverse, reverse(cycle))
+
+"""
+    AmboGraph(vertex_facet_incidence)
+
+Given a polymake polytope it constructs the Euclidean medial graph using ambo function
+such that the vertex corresponding to the first edge is removed.
+"""
+struct AmboGraph
+    vertex_facet::BitMatrix
+    incidence::BitMatrix
+    faces::Vector{Vector{Int}}
+    vertex_face_indicator::Vector{Bool}
+    face_cycles::Vector{Vector{NTuple{2,Int}}}
+    polytope_edges::Vector{NTuple{2,Int}}
+    oriented_edges::Dict{NTuple{2,Int},Int}
+end
+
+function AmboGraph(input_polytope)
+    J = BitMatrix(input_polytope.VERTICES_IN_FACETS)
+    # TODO: See if we can compute M within polymake
+    M = vertex_facet_to_incidence(J)
+    # Polymake ambo first outputs the new faces arise from faces, then vertex faces. 
+    amboJ_VIF_zeroindexed = Polymake.polytope.conway_ambo(input_polytope).VIF_CYCLIC_NORMAL
+    amboJ_VIF = amboJ_VIF_zeroindexed
+    for i in enumerate(amboJ_VIF_zeroindexed)
+        amboJ_VIF[i[1]] = i[2].+1
+    end
+
+
+    face_faces = amboJ_VIF[1:size(J,1)]
+    vertex_faces = amboJ_VIF[size(J,1)+1:end]
+
+    edges = NTuple{2,Int}[]
+    for i = 1:size(M, 1), j = i+1:size(M, 1)
+        M[i, j] && push!(edges, (i, j))
+    end
+
+    faces = Vector{Int}[]
+    vertex_face_indicator = Bool[]
+    for f in vertex_faces
+        if all(!isone, f)
+            push!(faces, f)
+            push!(vertex_face_indicator, true)
+        end
+    end
+    for f in face_faces
+        if all(!isone, f)
+            push!(faces, f)
+            push!(vertex_face_indicator, false)
+        end
+    end
+
+   # S = Dict{NTuple{2,Int},Int}()
+   # for i in enumerate(amboJ_VIF)
+   #     if all(!isone, i[2])
+   #         for e in cycle(i[2])
+   #             S[e] = i[1]
+   #         end
+   #     end    
+   # end
+
+
+    # To guarantee consistent orientation we keep a set dict S where the keys are all
+    # oriented edges and the values are the corresponding face
+    S = Dict{NTuple{2,Int},Int}()
+    # The first face is by definition consistent
+    conistent_faces = faces[1]
+    for e in cycle(faces[1])
+        S[e] = 1
+    end
+
+    # need to process all others. put them in a queue
+    faces_to_process = collect(2:length(faces))
+    # empty queue until we are done
+    limit_counter = 1
+    limit = length(faces_to_process)^3
+
+    while !isempty(faces_to_process)
+        k = popfirst!(faces_to_process)
+        face = faces[k]
+
+        # now we build the boundary cycle in both orientations
+        c = cycle(face)
+        rc = rev(c)
+        # if the orientation is correct as it is, then an edge of the reverse cycle
+        # needs to be in S
+        if any(e -> haskey(S, e), rc)
+            for e in c
+                S[e] = k
+            end
+            # maybe we need to reverse the orientation?
+        elseif any(e -> haskey(S, e), c)
+            for e in rc
+                S[e] = k
+            end
+            reverse!(face)
+            # If we are here, then no neighboring faces are processed so far
+            # -> put to the end of the queue again
+        else
+            push!(faces_to_process, k)
+        end
+        limit_counter += 1
+        if limit_counter > limit
+            @warn("Aborted orientation algorithm.")
+            break
+        end
+    end
+
+    return EuclideanMedialGraph(
+        BitMatrix(J),
+        BitMatrix(M),
+        faces,
+        vertex_face_indicator,
+        cycle.(faces),
+        edges,
+        S,
+    )
+
+end
 
 """
     EuclideanMedialGraph(vertex_facet_incidence)
@@ -106,7 +225,9 @@ function EuclideanMedialGraph(vertex_facet)
         end
         boundary
     end
-
+    print("----------")
+    print(vertex_faces)
+    print("\n ------------ \n")
     # Construct faces for each face
     face_faces = map(1:size(J, 1)) do t
         V = findall(J[t, :])
@@ -136,7 +257,9 @@ function EuclideanMedialGraph(vertex_facet)
 
         boundary
     end
-
+    print("----------")
+    print(face_faces)
+    print("\n ------------ \n")
 
     faces = Vector{Int}[]
     vertex_face_indicator = Bool[]
