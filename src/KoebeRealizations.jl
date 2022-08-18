@@ -99,16 +99,63 @@ function AmboGraph(input_polytope)
         end
     end
 
+    
+    #TODO: Refactor the computation of oriented_edges
+    #S = Dict{NTuple{2,Int},Int}()
+    #for i in enumerate(amboJ_VIF)
+    #    if all(!isone, i[2])
+    #        for e in cycle(i[2])
+    #            S[e] = i[1]
+    #        end
+    #    end    
+    #end
+
+
+    # To guarantee consistent orientation we keep a set dict S where the keys are all
+    # oriented edges and the values are the corresponding face
     S = Dict{NTuple{2,Int},Int}()
-    for i in enumerate(amboJ_VIF)
-        if all(!isone, i[2])
-            for e in cycle(i[2])
-                S[e] = i[1]
-            end
-        end    
+    # The first face is by definition consistent
+    conistent_faces = faces[1]
+    for e in cycle(faces[1])
+        S[e] = 1
     end
 
+    # need to process all others. put them in a queue
+    faces_to_process = collect(2:length(faces))
+    # empty queue until we are done
+    limit_counter = 1
+    limit = length(faces_to_process)^3
 
+    while !isempty(faces_to_process)
+        k = popfirst!(faces_to_process)
+        face = faces[k]
+
+        # now we build the boundary cycle in both orientations
+        c = cycle(face)
+        rc = rev(c)
+        # if the orientation is correct as it is, then an edge of the reverse cycle
+        # needs to be in S
+        if any(e -> haskey(S, e), rc)
+            for e in c
+                S[e] = k
+            end
+            # maybe we need to reverse the orientation?
+        elseif any(e -> haskey(S, e), c)
+            for e in rc
+                S[e] = k
+            end
+            reverse!(face)
+            # If we are here, then no neighboring faces are processed so far
+            # -> put to the end of the queue again
+        else
+            push!(faces_to_process, k)
+        end
+        limit_counter += 1
+        if limit_counter > limit
+            @warn("Aborted orientation algorithm.")
+            break
+        end
+    end
     
     return EuclideanMedialGraph(
         BitMatrix(J),
@@ -209,7 +256,7 @@ function EuclideanMedialGraph(vertex_facet)
 
         boundary
     end
-    
+
     faces = Vector{Int}[]
     vertex_face_indicator = Bool[]
     for f in vertex_faces
